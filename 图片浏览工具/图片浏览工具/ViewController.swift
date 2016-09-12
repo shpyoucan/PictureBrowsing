@@ -10,22 +10,40 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private var tempView:HPPictureBrowsingView?
+    
+    private var tempShowBtn:UIButton?
+    
+    private var tempDismissBtn:UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let btn = UIButton(type: UIButtonType.Custom)
-        btn.frame = CGRectMake(0, 0, 100, 30)
-        btn.setTitle("进入图片", forState: UIControlState.Normal)
-        btn.center = view.center
-        btn.backgroundColor = UIColor.orangeColor()
-        btn.addTarget(self, action: #selector(ViewController.click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(btn)
+        let showBtn = UIButton(type: UIButtonType.Custom)
+        showBtn.frame = CGRectMake(50, UIScreen.mainScreen().bounds.height - 50, 100, 30)
+        showBtn.setTitle("进入图片", forState: UIControlState.Normal)
+        showBtn.backgroundColor = UIColor.orangeColor()
+        tempShowBtn = showBtn
+        showBtn.addTarget(self, action: #selector(ViewController.click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(showBtn)
+        
+        let dismissBtn = UIButton(type: UIButtonType.Custom)
+        dismissBtn.frame = CGRectMake(200, UIScreen.mainScreen().bounds.height - 50, 100, 30)
+        dismissBtn.setTitle("消失", forState: UIControlState.Normal)
+        dismissBtn.enabled = false
+        tempDismissBtn = dismissBtn
+        dismissBtn.backgroundColor = UIColor.orangeColor()
+        dismissBtn.addTarget(self, action: #selector(ViewController.dismissClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(dismissBtn)
+        
     }
     
     @objc private func click(sender:UIButton) {
         
+        sender.enabled = false
+        tempDismissBtn?.enabled = true
+        
         var loadArray = [HPPictureBrowsingModel]()
-
 /*
         // 加载本地image
         for var i:Int in 0..<7 {
@@ -69,10 +87,18 @@ class ViewController: UIViewController {
             loadArray.append(model)
         }
         
-        let pictureBrowsingView = HPPictureBrowsingView(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 400), dataSource: loadArray, currentNumber: 6, localCache:true)
+        let pictureBrowsingView = HPPictureBrowsingView(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 400), dataSource: loadArray, currentNumber: 6, localCache:true, showInView:self.view)
         pictureBrowsingView.backgroundColor = UIColor.whiteColor()
-        view.addSubview(pictureBrowsingView)
+        tempView = pictureBrowsingView
+        pictureBrowsingView.show()
         
+    }
+    
+    @objc private func dismissClick(sender:UIButton) {
+        sender.enabled = false
+        tempShowBtn?.enabled = true
+        
+        tempView?.dismiss()
     }
     
 }

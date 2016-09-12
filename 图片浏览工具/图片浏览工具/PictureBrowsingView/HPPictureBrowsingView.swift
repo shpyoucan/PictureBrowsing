@@ -24,6 +24,9 @@ class HPPictureBrowsingView: UIView {
         /// 占位图片数据源
     private var placeholdImageData = [AnyObject]()
     
+        /// 提供容器展示图片浏览view显示
+    private var currentViewContainer:UIView = UIView()
+    
     let cellID = "cellID"
     private lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -49,7 +52,17 @@ class HPPictureBrowsingView: UIView {
     }()
     
     // MARK: - 初始化
-    init(frame: CGRect, dataSource:[HPPictureBrowsingModel], currentNumber:NSInteger, localCache:Bool) {
+    /**
+     初始化
+     
+     - parameter frame:         view的frame
+     - parameter dataSource:    展示的model数组来源
+     - parameter currentNumber: 当前展示哪一页
+     - parameter localCache:    是本本地缓存
+     
+     - returns: 返回self
+     */
+    init(frame: CGRect, dataSource:[HPPictureBrowsingModel], currentNumber:NSInteger, localCache:Bool, showInView:UIView) {
         super.init(frame: frame)
         
         // 目的：使得将超出view的cell区域裁剪掉
@@ -62,8 +75,21 @@ class HPPictureBrowsingView: UIView {
         // 当前页码
         self.currentPage = currentNumber
         
+        self.currentViewContainer = showInView
+        
         // 创建UI
         UIConfig()
+    }
+    
+    // 显示
+    func show() {
+        currentViewContainer.addSubview(self)
+        
+    }
+    
+    // 消失
+    func dismiss() {
+        self.removeFromSuperview()
     }
     
     private func UIConfig() {
