@@ -1,5 +1,6 @@
 # PictureBrowsing
 图片放大浏览
+功能：缩放图片。
 
 使用说明：
 1.创建HPPictureBrowsingModel实例对象；
