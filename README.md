@@ -6,7 +6,8 @@
 2.调用HPPictureBrowsingView的初始化方法：init(frame: CGRect, dataSource:[HPPictureBrowsingModel], currentNumber:NSInteger, localCache:Bool)；
 
 使用举例：
-  // 加载网络图片
+
+         // 加载网络图片
         let loadImageUrlArray = [
             "http://www.bz55.com/uploads/allimg/150414/140-150414102U7.jpg",
             "http://www.bz55.com/uploads/allimg/150708/140-150FQ42011.jpg",
@@ -20,20 +21,15 @@
         ]
         
         for i:Int in 0..<loadImageUrlArray.count {
-            
             let imgeUrl = loadImageUrlArray[i]
-            
             let model = HPPictureBrowsingModel()
             model.loadImageUrl = imgeUrl
-            
             // 可设置占位图片
-//            model.placeholdImage = UIImage(named: "placeholdImage")
-            
+            // model.placeholdImage = UIImage(named: "placeholdImage")
             loadArray.append(model)
         }
         
         let pictureBrowsingView = HPPictureBrowsingView(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 400), dataSource: loadArray, currentNumber: 6, localCache:true)
         pictureBrowsingView.backgroundColor = UIColor.whiteColor()
-        view.addSubview(pictureBrowsingView)
-        
+        view.addSubview(pictureBrowsingView) 
     }
