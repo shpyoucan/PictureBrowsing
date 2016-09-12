@@ -3,7 +3,7 @@
 
 使用说明：
 1.创建HPPictureBrowsingModel实例对象；
-2.调用HPPictureBrowsingView的初始化方法：init(frame: CGRect, dataSource:[HPPictureBrowsingModel], currentNumber:NSInteger, localCache:Bool)；
+2.调用HPPictureBrowsingView的初始化方法：init(frame: CGRect, dataSource:[HPPictureBrowsingModel], currentNumber:NSInteger, localCache:Bool, showInView:UIView)；
 
 使用举例：
 
@@ -31,5 +31,5 @@
         
         let pictureBrowsingView = HPPictureBrowsingView(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 400), dataSource: loadArray, currentNumber: 6, localCache:true)
         pictureBrowsingView.backgroundColor = UIColor.whiteColor()
-        view.addSubview(pictureBrowsingView) 
+        pictureBrowsingView.show()
     }
