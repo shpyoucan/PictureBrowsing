@@ -13,16 +13,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scroll = UIScrollView(frame: CGRectMake(80, 80, 100, 60))
-        scroll.backgroundColor = UIColor.purpleColor()
-        scroll.contentSize = CGSizeMake(100 * 2, 0)
-        scroll.pagingEnabled = true
-        view.addSubview(scroll)
-        
-        let v1 = UIView(frame: CGRectMake(0, 0, 120, 60))
-        v1.backgroundColor = UIColor.orangeColor()
-        scroll.addSubview(v1)
-        
         let btn = UIButton(type: UIButtonType.Custom)
         btn.frame = CGRectMake(0, 0, 100, 30)
         btn.setTitle("进入图片", forState: UIControlState.Normal)
@@ -79,7 +69,7 @@ class ViewController: UIViewController {
             loadArray.append(model)
         }
         
-        let pictureBrowsingView = HPPictureBrowsingView(frame: CGRectMake(20, 70, 200, 400), dataSource: loadArray, currentNumber: 6, localCache:true)
+        let pictureBrowsingView = HPPictureBrowsingView(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 400), dataSource: loadArray, currentNumber: 6, localCache:true)
         pictureBrowsingView.backgroundColor = UIColor.whiteColor()
         view.addSubview(pictureBrowsingView)
         
